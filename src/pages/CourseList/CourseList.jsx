@@ -1,30 +1,87 @@
-import Typography from '@mui/material/Typography';
 import CourseCard from '../../components/Card';
-import { coursedata } from '../../utillls/CourseModel';
+import { FetchCourseList } from './api/CourseListAPI';
+import { useEffect, useState } from 'react';
+import Navbar from '../../layouts/Navbar';
+import Pagination from '@mui/material/Pagination';
+import pusher from '../../service/Pusher';
+import Footer from '../../layouts/Footer';
+
 
 const CourseList = () => {
+
+    const [courses, setCourses] = useState()
+    const [likes, setLikes] = useState(null)
+    const [totalPage, setTotalPage] = useState(2)
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(5)
+    const [loader, setloader] = useState(true)
+    const CourseList = async () => {
+        const data = await FetchCourseList(page, limit)
+        setCourses(data)
+
+    }
+    useEffect(() => {
+
+        CourseList()
+    }, [page, limit])
+
+
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
+
+    useEffect(() => {
+        const channel = pusher.subscribe('incrementlike');
+        channel.bind('incremented', (data) => {
+            console.log("reviced data", data)
+            setLikes(data)
+        })
+
+        return () => {
+            channel.unbind('incrementlike');
+            pusher.unsubscribe('incremented');
+        };
+    }, [likes])
+
+
+
     return (
-        <div className='' >
+
+        <div >
             <div>
-                <Typography variant='h4' >
-                    List Of Courses
-                </Typography>
+                <Navbar />
             </div>
 
             <div className='mt-5' >
-                <div className='px-20 xsm:px-2 '>
+                <div className='sm:px-20 xsm:px-2 '>
                     {
-                        coursedata.map((course)=>{
-                            return(
-                                <div className='py-5' key={course?.id} >
-                                    <CourseCard coursedata={course} />
+                        courses?.data.map((course) => {
+                            return (
+                                <div className='py-5' key={course?.cid}  >
+                                    <CourseCard coursedata={course} likes={likes} />
                                 </div>
                             )
                         })
                     }
                 </div>
             </div>
+
+            <div className='flex justify-center items-center py-5'>
+                <Pagination
+                    count={totalPage}
+                    page={page}
+                    onChange={handlePageChange}
+                    color='primary'
+
+                />
+            </div>
+
+            <div>
+                <Footer />
+            </div>
         </div>
+
     )
 }
 
