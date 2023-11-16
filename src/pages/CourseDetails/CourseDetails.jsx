@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom";
 import CourseDataDisplay from "../../components/CourseDataDisplay";
 import { FetchCourseInfo } from "./api/CourseInfoAPI";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Navbar from "../../layouts/Navbar";
+import Footer from "../../layouts/Footer";
 
 
 
@@ -30,6 +30,9 @@ const CourseDetails = () => {
             </div>
             <div>
                 <CourseDataDisplay coursesInfo={coursesInfo} />
+            </div>
+            <div>
+                <Footer/>
             </div>
         </>
     )

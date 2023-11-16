@@ -36,12 +36,12 @@ const Navbar = () => {
                             (<>
 
                                 <div className="flex justify-center items-center " >
-                                    <div>
+                                    <div className="w-full" >
                                         <LogoutButton />
                                     </div>
-                                    <div >
-                                        <IconButton size="large" color="primary" onClick={()=>navigateStudentpanel()}  >
-                                            <AccountCircleIcon fontSize="large" />
+                                    <div className="" >
+                                        <IconButton   color="primary" onClick={()=>navigateStudentpanel()}  >
+                                            <AccountCircleIcon fontSize="large"   />
                                         </IconButton>
                                     </div>
                                 </div>

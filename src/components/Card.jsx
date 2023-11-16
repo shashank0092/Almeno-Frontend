@@ -35,7 +35,7 @@ export default function CourseCard({ coursedata,likes }) {
 
 
   return (
-    <div className='xsm:bg-red-700 border border-gray-300 rounded-lg flex items-center justify-around sm:bg-white  ' >
+    <div className='bg-gray-200 hover:bg-gray-400  border border-gray-300 rounded-lg flex items-center justify-around   ' >
       <div className='' >
         <img
 

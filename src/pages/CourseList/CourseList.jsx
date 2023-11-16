@@ -4,20 +4,24 @@ import { useEffect, useState } from 'react';
 import Navbar from '../../layouts/Navbar';
 import Pagination from '@mui/material/Pagination';
 import pusher from '../../service/Pusher';
+import Footer from '../../layouts/Footer';
+
 
 const CourseList = () => {
 
     const [courses, setCourses] = useState()
-    const [likes,setLikes]=useState(null)
+    const [likes, setLikes] = useState(null)
     const [totalPage, setTotalPage] = useState(2)
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(5)
+    const [loader, setloader] = useState(true)
     const CourseList = async () => {
         const data = await FetchCourseList(page, limit)
         setCourses(data)
 
     }
     useEffect(() => {
+
         CourseList()
     }, [page, limit])
 
@@ -26,23 +30,24 @@ const CourseList = () => {
         setPage(value);
     };
 
-    
-  useEffect(()=>{
-    const channel = pusher.subscribe('incrementlike');
-    channel.bind('incremented',(data)=>{
-      console.log("reviced data",data)
-      setLikes(data)
-    })
 
-    return () => {
-        channel.unbind('incrementlike');
-        pusher.unsubscribe('incremented');
-      };
-  },[likes])
+    useEffect(() => {
+        const channel = pusher.subscribe('incrementlike');
+        channel.bind('incremented', (data) => {
+            console.log("reviced data", data)
+            setLikes(data)
+        })
 
-  
+        return () => {
+            channel.unbind('incrementlike');
+            pusher.unsubscribe('incremented');
+        };
+    }, [likes])
+
+
 
     return (
+
         <div >
             <div>
                 <Navbar />
@@ -54,7 +59,7 @@ const CourseList = () => {
                         courses?.data.map((course) => {
                             return (
                                 <div className='py-5' key={course?.cid}  >
-                                    <CourseCard coursedata={course} likes={likes}  />
+                                    <CourseCard coursedata={course} likes={likes} />
                                 </div>
                             )
                         })
@@ -71,7 +76,12 @@ const CourseList = () => {
 
                 />
             </div>
+
+            <div>
+                <Footer />
+            </div>
         </div>
+
     )
 }
 

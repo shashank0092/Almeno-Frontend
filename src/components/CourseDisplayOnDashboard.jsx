@@ -44,24 +44,24 @@ const CourseCard = ({ course }) => {
   }, [course]); 
 
   return (
-    <div className="flex flex-row items-center justify-around  py-10 border border-black rounded-3xl">
-      <div className="h-1/3 w-1/12">
+    <div className="flex flex-row items-center justify-around  py-10 border border-black rounded-3xl bg-gray-200 hover:bg-gray-400">
+      <div className="h-1/3 w-1/12 xsm:1/2 xsm:w-1/4">
         <img src={course?.thumbnail} alt="logo-image" />
       </div>
       <div>
         <div>
-          <p className="text-2xl font-bold">{course?.name}</p>
+          <p className="text-2xl font-bold xsm:text-lg">{course?.name}</p>
         </div>
         <div>
-          <p className="text-xl font-semibold">{course?.instructor}</p>
+          <p className="text-xl font-semibold xsm:text-base ">{course?.instructor}</p>
         </div>
         <div>
-          <p className="text-lg font-medium">{dueDate}</p>
+          <p className="text-lg font-medium xsm:text-sm">{dueDate}</p>
         </div>
       </div>
       <div>
-        <div className="border border-black bg-green-800 py-3 px-3 font-bold rounded-lg text-white hover:cursor-pointer" onClick={()=>markComplete()} >
-          <p>Mark Completed</p>
+        <div className="border border-black bg-green-800 py-3 px-3 font-bold rounded-lg text-white hover:cursor-pointer xsm:mr-3 xsm:px-1 xsm:rounded-full xsm:font-medium xsm:py-3" onClick={()=>markComplete()} >
+          <p  >MarkCompleted</p>
         </div>
       </div>
     </div>

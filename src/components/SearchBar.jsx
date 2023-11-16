@@ -37,8 +37,8 @@ const SearchBar = () => {
     return (
         <>
 
-            <div className='flex ' >
-                <div className="border border-black w-[550px]  rounded-full flex  justify-center items-center " >
+            <div className='flex  ' >
+                <div className="border border-black sm:w-[550px] xsm:full rounded-full flex  justify-center items-center " >
                     <div className='w-full' >
                         <input type="text" placeholder="Find Course For You Here" className=' rounded-full w-full py-5  outline-none ' />
                     </div>
