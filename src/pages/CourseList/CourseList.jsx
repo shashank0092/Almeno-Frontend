@@ -3,10 +3,12 @@ import { FetchCourseList } from './api/CourseListAPI';
 import { useEffect, useState } from 'react';
 import Navbar from '../../layouts/Navbar';
 import Pagination from '@mui/material/Pagination';
+import pusher from '../../service/Pusher';
 
 const CourseList = () => {
 
     const [courses, setCourses] = useState()
+    const [likes,setLikes]=useState(null)
     const [totalPage, setTotalPage] = useState(2)
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(5)
@@ -24,7 +26,21 @@ const CourseList = () => {
         setPage(value);
     };
 
+    
+  useEffect(()=>{
+    const channel = pusher.subscribe('incrementlike');
+    channel.bind('incremented',(data)=>{
+      console.log("reviced data",data)
+      setLikes(data)
+    })
 
+    return () => {
+        channel.unbind('incrementlike');
+        pusher.unsubscribe('incremented');
+      };
+  },[likes])
+
+  
 
     return (
         <div >
@@ -37,8 +53,8 @@ const CourseList = () => {
                     {
                         courses?.data.map((course) => {
                             return (
-                                <div className='py-5' key={course?.cid} >
-                                    <CourseCard coursedata={course} />
+                                <div className='py-5' key={course?.cid}  >
+                                    <CourseCard coursedata={course} likes={likes}  />
                                 </div>
                             )
                         })
