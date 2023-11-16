@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import CourseList from "./pages/CourseList/CourseList";
 import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import StudentPanel from "./pages/StudentPanel/StudentPanel";
+
 const App = () => {
   return (
     <>

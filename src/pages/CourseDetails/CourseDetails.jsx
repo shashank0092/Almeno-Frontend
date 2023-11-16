@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
-
 import CourseDataDisplay from "../../components/CourseDataDisplay";
+import { FetchCourseInfo } from "./api/CourseInfoAPI";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Navbar from "../../layouts/Navbar";
 
 
 
@@ -8,11 +11,26 @@ import CourseDataDisplay from "../../components/CourseDataDisplay";
 const CourseDetails = () => {
 
     const loaction = useLocation()
-    const id = loaction.state?.data
-    console.log(id, "this is a course id")
+    const cid = loaction.state?.data
+
+
+    const [coursesInfo, setCoursesInfo] = useState()
+    const CourseInfo = async () => {
+        const data = await FetchCourseInfo(cid)
+        setCoursesInfo(data)
+
+    }
+    useEffect(() => {
+        CourseInfo()
+    }, [])
     return (
         <>
-           <CourseDataDisplay/>
+            <div>
+                <Navbar />
+            </div>
+            <div>
+                <CourseDataDisplay coursesInfo={coursesInfo} />
+            </div>
         </>
     )
 }

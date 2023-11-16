@@ -7,13 +7,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function CourseSyallabus() {
+export default function CourseSyallabus({coursesInfo}) {
     return (
         <div>
             {
-                coursedata[0].syllabus.map((syllabus) => {
+                coursesInfo?.data[0]?.syllabus.map((syllabus) => {
                     return (
-                        <>
+                        <div >
                             <Accordion>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
@@ -39,7 +39,7 @@ export default function CourseSyallabus() {
                                     </p>
                                 </AccordionDetails>
                             </Accordion>
-                        </>
+                        </div>
                     )
                 })
             }
