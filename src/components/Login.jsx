@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { changeInfo } from "../redux/features/userDetails";
-import { useDispatch } from "react-redux";
+
 import { CreateStudent } from "../service/CreateStudent";
 
 
@@ -13,7 +15,7 @@ const LoginButton = () => {
 
   const genrateStudent=async()=>{
     const student=await CreateStudent(user)
-    console.log("this is genrated studnebt in login btn",student)
+    
     dispatch(changeInfo(student))
   }
 
