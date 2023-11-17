@@ -5,7 +5,7 @@ import CourseSyallabus from "./CourseSyallabus";
 
 const CourseDataDisplay = ({ coursesInfo }) => {
 
-    console.log(coursesInfo, "this is given by api")
+   
     const userData = useSelector(state => state?.userDetails)
     const userEmail = userData?.userInfo?.data?.email;
 
@@ -16,7 +16,7 @@ const CourseDataDisplay = ({ coursesInfo }) => {
         
         const data = await PurchaseCourse(sid, cid)
         alert(data?.message)
-        console.log(data);
+        
     }
 
 

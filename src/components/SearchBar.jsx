@@ -1,3 +1,8 @@
+import * as React from 'react';
+
+import { SearchCourse } from '../service/SearchCourse';
+import CourseCard from './Card';
+
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
@@ -10,9 +15,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import Checkbox from '@mui/material/Checkbox';
 
-import * as React from 'react';
-import { SearchCourse } from '../service/SearchCourse';
-import CourseCard from './Card';
+
+
 
 const SearchBar = () => {
 
@@ -28,10 +32,17 @@ const SearchBar = () => {
         open: false, progress: false, close: false
     })
 
+
+
+
+
     const handleClickOpen = (scrollType) => () => {
         setOpen(true);
         setScroll(scrollType);
     };
+
+
+
 
     const handleClose = () => {
         setOpen(false);
@@ -43,13 +54,14 @@ const SearchBar = () => {
         setcourseFilter({ open: false, close: false, progress: false })
     };
 
+
+
     const search = async () => {
         const data = await SearchCourse(courseName, instructorName)
-        console.log(data, "this is search result");
+        
         await SetSearchResult(data)
     }
-    // console.log(searchResult,"shukla boi")
-    console.log(courseFilter, "gnadu courseFilter")
+   
 
     const descriptionElementRef = React.useRef(null);
     React.useEffect(() => {

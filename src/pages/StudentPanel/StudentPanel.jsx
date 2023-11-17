@@ -1,20 +1,33 @@
-import { useLocation } from "react-router-dom"
-import Navbar from "../../layouts/Navbar"
-import {FetchEnrolledCourseList} from "./api/Enrolledcourses"
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
+
+import {FetchEnrolledCourseList} from "./api/Enrolledcourses"
+
+import Navbar from "../../layouts/Navbar"
 import Footer from "../../layouts/Footer"
+
 import CourseDisplayOnDashboard from "../../components/CourseDisplayOnDashboard"
+
+
 const StudentPanel = () => {
     const loaction = useLocation()
     const value = loaction.state.data
-    console.log(value, "this is values")
+    
+
+
+
 
     const[EnrolledCourse,setEnrolledCourse]=useState();
+
+
+
     const FetchCourses=async()=>{
         const courses=await FetchEnrolledCourseList(value?.userInfo?.data?._id)
         setEnrolledCourse(courses)
-        console.log("this is enrolled courses",courses)
+        
     }
+
+    
 
     useEffect(()=>{
         FetchCourses()

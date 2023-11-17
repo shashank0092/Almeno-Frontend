@@ -1,11 +1,15 @@
-import CourseCard from '../../components/Card';
-import { FetchCourseList } from './api/CourseListAPI';
 import { useEffect, useState } from 'react';
-import Navbar from '../../layouts/Navbar';
-import Pagination from '@mui/material/Pagination';
-import pusher from '../../service/Pusher';
-import Footer from '../../layouts/Footer';
 
+import CourseCard from '../../components/Card';
+
+import { FetchCourseList } from './api/CourseListAPI';
+
+import pusher from '../../service/Pusher';
+
+import Footer from '../../layouts/Footer';
+import Navbar from '../../layouts/Navbar';
+
+import Pagination from '@mui/material/Pagination';
 
 const CourseList = () => {
 
@@ -14,7 +18,12 @@ const CourseList = () => {
     const [totalPage, setTotalPage] = useState(2)
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(5)
-    const [loader, setloader] = useState(true)
+
+
+
+
+
+
     const CourseList = async () => {
         const data = await FetchCourseList(page, limit)
         setCourses(data)
@@ -31,10 +40,12 @@ const CourseList = () => {
     };
 
 
+
+    
     useEffect(() => {
         const channel = pusher.subscribe('incrementlike');
         channel.bind('incremented', (data) => {
-            console.log("reviced data", data)
+            
             setLikes(data)
         })
 

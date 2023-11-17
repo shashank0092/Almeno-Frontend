@@ -1,8 +1,7 @@
 
 export const SearchCourse=async(courseName,instructorName)=>{
     
-    console.log("this is courseName->",courseName)
-    console.log("this is instructor->",instructorName)
+   
    
     const data=await fetch(`https://almeno-backend.onrender.com/v0/searchcourse`,{
         method:"post",

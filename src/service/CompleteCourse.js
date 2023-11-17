@@ -1,8 +1,7 @@
 
 export const CompleteCourse=async(sid,cid)=>{
     
-    console.log("this is student->",sid)
-    console.log("this is course->",cid)
+ 
    
     const coursePurchase=await fetch(`https://almeno-backend.onrender.com/v0/coursedone`,{
         method:"post",

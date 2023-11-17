@@ -6,8 +6,7 @@ import { CompleteCourse } from "../service/CompleteCourse";
 
 const CourseDisplayOnDashboard = ({ EnrolledCourse }) => {
   const value = useSelector((state) => state?.userDetails);
-  console.log(value, "this is redux value");
-  console.log(EnrolledCourse, "this is it");
+  
 
   return (
     <>
@@ -26,7 +25,7 @@ const CourseDisplayOnDashboard = ({ EnrolledCourse }) => {
 
 const CourseCard = ({ course }) => {
   const userDetails = useSelector((state) => state?.userDetails);
-  console.log(userDetails, "this is redux value");
+  
   const sid=userDetails?.userInfo?.data?._id
   const cid=course?.cid
 
@@ -34,7 +33,7 @@ const CourseCard = ({ course }) => {
   const markComplete=async()=>{
     const data=await CompleteCourse(sid,cid)
     alert(data?.message)
-    console.log(data)
+    
   }
 
   useEffect(() => {

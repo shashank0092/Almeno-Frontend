@@ -7,7 +7,6 @@ export const FetchCourseList=async(page,limit)=>{
 
     const courseData=await data.json()
     const courseList=await courseData;
-    console.log(`runnig for shukla`,page,limit)
-    console.log(courseList,"this is data ")
+    
     return courseList;
 }

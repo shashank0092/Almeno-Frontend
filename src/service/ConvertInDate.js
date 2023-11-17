@@ -7,10 +7,10 @@ export const convertDate = (weeks) => {
 
     const dateString = today;
 
-    // Convert the string to a Date object
+    
     const dateObject = new Date(dateString);
 
-    // Get the date portion
+    
     const dateOnly = dateObject.toLocaleDateString();
 
 
